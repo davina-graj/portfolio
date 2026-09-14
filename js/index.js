@@ -75,11 +75,9 @@ document.querySelectorAll('nav a.nav-link').forEach(link => {
 });
 
 
-// Site base path comes from <body data-baseurl>, which Jekyll fills in from
-// _config.yml. Falls back to the site root when the tag is unprocessed.
-const rawBaseUrl = document.body.dataset.baseurl || "";
-const siteBaseUrl = rawBaseUrl.includes("{{") ? "" : rawBaseUrl.replace(/\/$/, "");
-const basePath = `${siteBaseUrl}/assets/user_data/`;
+// Resolved against the page URL rather than the domain root, so the same
+// build works at https://user.github.io/portfolio/ and at a bare domain.
+const basePath = new URL("assets/user_data/", document.baseURI).href;
 
 const iconMap = {
     "email-id": "fas fa-envelope",   // 📧 Email icon (Font Awesome Solid)
