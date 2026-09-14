@@ -36,6 +36,7 @@
             "PythonAnywhere"
         ],
         "link": {
+            "website": "https://davinagraj.pythonanywhere.com/",
             "github": "https://github.com/davina-graj/moviesstore.git",
             "live_demo": "https://gtvault-my.sharepoint.com/:v:/g/personal/araj305_gatech_edu/IQBIuTLMSNtDQIGSvSu7C1oTASXiXf6tj6u3sAcuQSF4ZyA?e=DkeboS&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D"
         },
@@ -86,6 +87,7 @@
             "ElevenLabs API"
         ],
         "link": {
+            "website": "https://phantombusters.vercel.app/",
             "github": "",
             "live_demo": ""
         },
