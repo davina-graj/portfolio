@@ -1,46 +1,78 @@
 /*
 ===========================================
-  Nature_Canvas (Blended & Modular)
-  Portfolio-Templates /Nature_Canvas
-  Author: Madhurima Rawat
+  Nature Canvas – Design Tokens
+  File: css/variables.css
   Description:
-    Defines modular CSS variables for a bright and dark-friendly Nature Canvas theme.
-    Includes smoothly blended linear gradients, well-labeled color tokens,
-    and dark mode-compatible enhancements.
+    Central colour + typography tokens for the nature-themed
+    computer science portfolio. Light and dark mode both draw
+    from the same four-colour earth palette below.
 ===========================================
 */
 
 :root {
    /* ========================================
-      🌿 Nature-Inspired Theme – Color Palette
+      🌿 Four-Colour Earth Palette
       ----------------------------------------
-      A calm, refreshing mix of greens and earth tones,
-      evoking the serenity of natural landscapes.
+      sand   #C2A884 – warm dry grass, the accent/highlight tone
+      sage   #677C69 – soft moss green, borders and secondary accents
+      forest #40534D – damp bark, body copy in light mode / cards in dark
+      pine   #1A3637 – deep evergreen shade, headings and dark backgrounds
    ======================================== */
-   --light-green: #e1f1e2;
-   /* Mint pastel – gentle, fresh highlights */
-   --red: #d85d5d;
-   /* Earthy rose – subtle alert or accent tone */
-   --dark-green: #094929;
-   /* Pine green – strong contrast for depth */
-   --teal: rgb(6, 100, 100);
-   /* Deep teal – cool, oceanic balance */
-   --hover-green: green;
-   /* Natural green – interactive hover cue */
-   --button-text: var(--light-green);
-   /* Button text tone – soft but legible on dark */
+   --sand: #C2A884;
+   --sage: #677C69;
+   --forest: #40534D;
+   --pine: #1A3637;
 
-   --light-teal: rgb(156, 225, 225);
-   /* Light teal – cool, oceanic balance */
-
-   --dark-green-text: #06341d;
-   /* Deep forest green – rich, readable, and nature-rooted */
+   /* Tints of the palette, used where large areas need enough contrast
+      for comfortable reading (page background, cards, dark-mode copy). */
+   --sand-mist: #F0E9E0;
+   /* sand at 25% over white – light mode page background */
+   --sand-veil: #F8F5F0;
+   /* sand at 12% over white – light mode card surface */
+   --sand-glow: #D1BEA3;
+   /* sand lightened 25% – dark mode body copy */
+   --sage-glow: #8FA491;
+   /* sage lightened – dark mode chips and metadata, keeps 4.8:1 on pine */
 
    /* ========================================
-      🖋️ Typography – Organic Elegance
-      ----------------------------------------
-      A classic serif with modern curves for a warm,
-      readable, and nature-aligned aesthetic.
+      🎨 Semantic Roles – Light Mode
    ======================================== */
-   --font-main: 'Marcellus', sans-serif;
+   --color-bg: var(--sand-mist);
+   --color-surface: var(--sand-veil);
+   --color-heading: var(--pine);
+   --color-text: var(--forest);
+   --color-text-soft: var(--sage);
+   --color-accent: var(--sage);
+   --color-accent-warm: var(--sand);
+   --color-border: var(--sage);
+   --color-on-accent: var(--sand-mist);
+
+   /* Skill chips are the largest block of solid colour on the page, so they
+      carry a different palette tone than the headings to keep all four visible. */
+   --color-chip-bg: var(--forest);
+   --color-chip-text: var(--sand-mist);
+
+   /* Warm panel behind the intro, so --sand covers real area and not just hairlines */
+   --color-panel: rgba(194, 168, 132, 0.28);
+   --color-panel-edge: var(--sand);
+
+   /* The leaf photo is a bright lime PNG, so it gets recoloured into the palette:
+      mossy sage on the light page, warm sand against the night page. */
+   --leaf-filter: grayscale(1) sepia(1) hue-rotate(55deg) saturate(1.8) brightness(0.95);
+   --leaf-opacity: 0.22;
+
+   /* Shadows tinted with the darkest palette tone instead of pure black */
+   --shadow-soft: 0 4px 12px rgba(26, 54, 55, 0.12);
+   --shadow-lift: 0 10px 22px rgba(26, 54, 55, 0.2);
+   --shadow-inset-accent: 0 2px 6px rgba(103, 124, 105, 0.35);
+
+   /* ========================================
+      🖋️ Typography
+      ----------------------------------------
+      Marcellus for headings (organic, carved-stone feel),
+      Quicksand for body copy, monospace for tech metadata.
+   ======================================== */
+   --font-main: 'Quicksand', 'Segoe UI', sans-serif;
+   --font-heading: 'Marcellus', Georgia, serif;
+   --font-mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Consolas, monospace;
 }

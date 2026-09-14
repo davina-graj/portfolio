@@ -1,0 +1,9 @@
+# Backup of the removed template collection - not part of the site
+deleteLater
+
+# Local design renders and preview tooling
+preview-shots
+dev-server.py
+
+# GitHub Pages / Jekyll config, unused on Vercel
+_config.yml

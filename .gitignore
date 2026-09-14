@@ -1,0 +1,10 @@
+# Local preview renders used while designing — not part of the site
+preview-shots/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jekyll build output
+_site/
+.jekyll-cache/

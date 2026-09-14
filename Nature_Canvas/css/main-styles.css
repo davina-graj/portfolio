@@ -43,8 +43,8 @@ body::before {
     background-position: top;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    opacity: 0.3;
-    /* control image opacity here */
+    filter: var(--leaf-filter);
+    opacity: var(--leaf-opacity);
     z-index: -1;
     /* behind everything */
     pointer-events: none;
@@ -116,13 +116,17 @@ main {
 .home-section {
     text-align: center;
     /* Center-align content */
+    padding: 2.25rem 1.5rem 2rem;
+    border-radius: 12px;
 }
 
 .name {
+    font-family: var(--font-heading);
     font-size: 3rem;
     /* Large name text */
     font-weight: 900;
     /* Very bold */
+    letter-spacing: 0.02em;
     margin-bottom: 0.5rem;
     /* Space below name */
 }
@@ -149,6 +153,7 @@ main {
 
 /* Section heading styles */
 .section-heading {
+    font-family: var(--font-heading);
     font-size: 2rem;
     /* Heading size */
     margin-bottom: 1rem;
@@ -226,6 +231,114 @@ main {
     border: 2px solid;
 }
 
+/* Skills split into labelled categories */
+.skills-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.skill-group-label {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.6rem;
+}
+
+/* -------------------------------------------
+   Shared card details: bylines, awards, bullets
+------------------------------------------- */
+
+.card-byline {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+}
+
+.card-award {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    margin-bottom: 0.6rem;
+}
+
+.card-award i {
+    margin-right: 0.4rem;
+}
+
+/* Click-to-expand blocks inside a card */
+.card-details {
+    margin: 0.35rem 0;
+    text-align: left;
+}
+
+.card-details-summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    list-style: none;
+    transition: color 0.2s ease;
+}
+
+/* Hide the default disclosure triangle in favour of the chevron below */
+.card-details-summary::-webkit-details-marker {
+    display: none;
+}
+
+.card-details-summary::before {
+    content: "\f054";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.68rem;
+    transition: transform 0.2s ease;
+}
+
+.card-details[open] .card-details-summary::before {
+    transform: rotate(90deg);
+}
+
+.card-details .card-highlights {
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-highlights {
+    list-style: none;
+    text-align: left;
+    margin: 0.6rem 0 0.8rem;
+}
+
+.card-highlights li {
+    position: relative;
+    padding-left: 1.35rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+/* Font Awesome leaf as the bullet marker */
+.card-highlights li::before {
+    content: "\f06c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.7rem;
+    position: absolute;
+    left: 0;
+    top: 0.28rem;
+}
+
 /* Project and certification layout */
 .section-list {
     display: flex;
@@ -259,11 +372,40 @@ main {
 }
 
 /* -------------------------------------------
+   Experience Section
+   Declared after .section-card so the full-width
+   override wins without extra specificity.
+------------------------------------------- */
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Two classes so the width survives the .section-card breakpoint rules
+   in responsive-styles.css, which loads after this file. */
+.experience-list .experience-card {
+    width: 100%;
+    text-align: left;
+}
+
+/* Full-width cards only lift, so the scale never pushes past the gutter */
+.experience-card:hover {
+    transform: translateY(-4px);
+}
+
+/* -------------------------------------------
    Project Section Styles
 ------------------------------------------- */
 
+/* Bullet-heavy cards read better left-aligned than centred */
+.project-card {
+    text-align: left;
+}
+
 /* Project title */
 .section-subheading {
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.25rem;
@@ -275,9 +417,11 @@ main {
     margin-bottom: 0.75rem;
 }
 
-/* Technologies/tools and certificates link used in the project */
+/* Technologies/tools, issuers, years and other metadata */
 .section-meta {
-    font-style: italic;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
     margin-bottom: 0.5rem;
 }
 
@@ -308,11 +452,6 @@ main {
 .project-tools,
 .project-links {
     margin: 6px 0;
-}
-
-/* Icon styling */
-.hobby-icon {
-    font-size: 1.3rem;
 }
 
 .footer {

@@ -1,18 +1,14 @@
-﻿<!--
-    Nature Canvas - Computer Science Portfolio
+---
+permalink: /Nature_Canvas
+---
 
-    Sections:
-    - Home: name, role, short bio
-    - Social & professional links
-    - Technical skills, grouped by category
-    - Experience
-    - Projects
-    - Education
+<!--
+    🌿 Nature Canvas – Computer Science Portfolio (theme page)
 
-    All content is loaded at runtime from assets/user_data/*.json by js/index.js,
-    so this file only defines structure. Colours live in Nature_Canvas/css.
-
-    Paths are root-relative because the site is served from the domain root.
+    Identical in structure to the site root page; kept here so the
+    Nature Canvas theme stays self-contained and previewable at
+    /Nature_Canvas. Content comes from assets/user_data/*.json via
+    js/index.js, colours from the css folder beside this file.
 -->
 
 <!DOCTYPE html>
@@ -22,33 +18,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Portfolio</title>
+    <title>Nature Canvas 🌱 Portfolio</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="Nature-inspired computer science portfolio showcasing software projects, technical skills, experience, and education." />
+        content="Nature-inspired computer science portfolio showcasing software projects, technical skills, education, and certifications." />
     <meta name="keywords"
         content="computer science portfolio, software engineer, developer portfolio, projects, skills, education" />
     <meta name="robots" content="index, follow" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/images/title-icon.png" />
-    <link rel="apple-touch-icon" href="/assets/images/title-icon.png" />
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/title-icon.png" />
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/images/title-icon.png" />
 
     <!-- Open Graph / Facebook Preview -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Computer Science Portfolio" />
+    <meta property="og:title" content="Nature Canvas Computer Science Portfolio" />
     <meta property="og:description"
-        content="Nature-inspired computer science portfolio showcasing software projects, technical skills, experience, and education." />
-    <meta property="og:image" content="/Nature_Canvas/site-previews/website_1.png" />
+        content="Nature-inspired computer science portfolio showcasing software projects, technical skills, education, and certifications." />
+    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/Nature_Canvas/site-previews/website_1.png" />
+    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/Nature_Canvas" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card Preview -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Computer Science Portfolio" />
+    <meta name="twitter:title" content="Nature Canvas Computer Science Portfolio" />
     <meta name="twitter:description"
-        content="Nature-inspired computer science portfolio showcasing software projects, technical skills, experience, and education." />
-    <meta name="twitter:image" content="/Nature_Canvas/site-previews/website_1.png" />
+        content="Nature-inspired computer science portfolio showcasing software projects, technical skills, education, and certifications." />
+    <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/Nature_Canvas/site-previews/website_1.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/Nature_Canvas" />
 
     <!-- Theme Color for mobile browsers (deep pine from the palette) -->
     <meta name="theme-color" content="#1A3637" />
@@ -62,11 +62,11 @@
             font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;">
 
     <!-- Nature Canvas theme styles -->
-    <link rel="stylesheet" href="/Nature_Canvas/css/variables.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/main-styles.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/index.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/index-dark.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/responsive-styles.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/Nature_Canvas/css/variables.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/Nature_Canvas/css/main-styles.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/Nature_Canvas/css/index.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/Nature_Canvas/css/index-dark.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/Nature_Canvas/css/responsive-styles.css" />
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -75,14 +75,15 @@
         rel="stylesheet">
 </head>
 
-<body data-baseurl="">
+<body data-baseurl="{{ site.baseurl }}">
     <header>
         <nav>
             <ul>
-                <li><a href="#home" class="nav-link"><i class="fas fa-house"></i> Home</a></li>
-                <li><a href="#skills" class="nav-link"><i class="fas fa-lightbulb"></i> Skills</a></li>
-                <li><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a></li>
+                <li><a href="{{ site.baseurl }}/" class="nav-link" target="_parent"><i class="fas fa-house"></i>
+                        Home</a></li>
                 <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i> Projects</a></li>
+                <li><a href="#skills" class="nav-link"><i class="fas fa-lightbulb"></i> Skills</a></li>
+                <li><a href="#social" class="nav-link"><i class="fas fa-share-alt"></i> Socials</a></li>
                 <li><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a></li>
                 <li><a href="#mode" class="nav-link"><i class="fas fa-moon"></i> Dark Mode</a></li>
             </ul>
@@ -103,16 +104,10 @@
             <div id="social-links" class="social-links"></div>
         </section>
 
-        <!-- Technical skills, grouped by category -->
+        <!-- Technical skills -->
         <section id="skills" class="section skills-section">
             <h2 class="section-heading">Technical Skills</h2>
-            <div id="skills-groups" class="skills-groups"></div>
-        </section>
-
-        <!-- Work and research experience -->
-        <section id="experience" class="section experience-section">
-            <h2 class="section-heading">Experience</h2>
-            <div id="experience-list" class="experience-list"></div>
+            <ul id="skills-list" class="skills-list"></ul>
         </section>
 
         <!-- Projects showcase -->
@@ -121,10 +116,22 @@
             <div id="projects-list" class="projects-list section-list"></div>
         </section>
 
+        <!-- Certifications display -->
+        <section id="certifications" class="section certifications-section">
+            <h2 class="section-heading">Certifications</h2>
+            <div id="certifications-list" class="certifications-list section-list"></div>
+        </section>
+
         <!-- Education background -->
         <section id="education" class="section education-section">
             <h2 class="section-heading">Education</h2>
             <div id="education-table" class="education-table section-list"></div>
+        </section>
+
+        <!-- Research papers and technical writing -->
+        <section id="research" class="section research-section">
+            <h2 class="section-heading">Research &amp; Writing</h2>
+            <div id="research-papers" class="research-list section-list"></div>
         </section>
     </main>
 
@@ -133,7 +140,7 @@
     </footer>
 
     <!-- Loads all content from assets/user_data -->
-    <script src="/js/index.js"></script>
+    <script src="{{ site.baseurl }}/js/index.js"></script>
 </body>
 
 </html>

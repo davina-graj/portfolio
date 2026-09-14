@@ -1,57 +1,44 @@
-# 🌱 Nature Canvas – Earthy Portfolio Template
+# 🌱 Nature Canvas – Earthy Portfolio Theme
 
-A modular and refreshing portfolio template inspired by nature’s calm, featuring smooth gradients, earth-toned contrasts, and typography that evokes organic elegance. Ideal for presenting personal or creative projects with a natural, grounded aesthetic.
+The theme powering this portfolio: soft earth tones, a leaf-frame backdrop and a serif/sans pairing that stays quiet enough for technical content. Originally the Nature Canvas template from [Portfolio-Templates](https://github.com/madhurimarawat/Portfolio-Templates) by Madhurima Rawat, recoloured around a four-tone palette.
 
-🎨 **Color Palette Highlights** (see [`css/variables.css`](css/variables.css) for full theme definitions):
+## 🎨 Colour palette
 
-* `--light-green`: #e1f1e2 – Mint pastel for subtle highlights
-* `--red`: #d85d5d – Earthy rose as a gentle accent
-* `--dark-green`: #094929 – Pine green for contrast and depth
-* `--teal`: rgb(6, 100, 100) – Deep, cool oceanic tone
-* `--hover-green`: green – Fresh interactive feedback
-* `--light-teal`: rgb(156, 225, 225) – Cool, light balance
-* `--dark-green-text`: #06341d – Forest ink for elegance and readability
+Defined in [`css/variables.css`](css/variables.css):
 
-🔗 [Live Demo](https://madhurimarawat.github.io/Portfolio-Templates/Nature_Canvas)
+* `--sand` `#C2A884` — warm dry grass; heading underlines, card top borders, dark-mode headings
+* `--sage` `#677C69` — soft moss; borders, hover states, metadata text
+* `--forest` `#40534D` — damp bark; body copy in light mode, card surfaces at night
+* `--pine` `#1A3637` — deep evergreen; headings and skill chips in light mode, the background in dark mode
 
-### 📱 Fully Responsive & Dual-Mode Ready
+Two tints of `--sand` (`--sand-mist`, `--sand-veil`) provide the light-mode page and card backgrounds, and `--sand-glow` carries body copy in dark mode, so text keeps a comfortable contrast ratio in both themes.
 
-This template is **100% responsive** on all devices and includes seamless support for both **🌞 light mode** and **🌙 dark mode** for accessibility and aesthetic flexibility.
+## 🗂️ Files
 
-### 📸 Snapshots
+| File                    | Purpose                                                   |
+| ----------------------- | --------------------------------------------------------- |
+| `css/variables.css`     | Palette and typography tokens — start here to retint       |
+| `css/main-styles.css`   | Layout, spacing and component structure                   |
+| `css/index.css`         | Light mode colour application                             |
+| `css/index-dark.css`    | Dark mode token remap                                     |
+| `css/responsive-styles.css` | Breakpoint adjustments down to small phones           |
+| `images/`               | Leaf frame background art                                 |
+| `index.html`            | Theme page, served at `/Nature_Canvas`                     |
+
+## 📱 Responsive & dual-mode
+
+Fully responsive, with a dark mode toggle that persists through `localStorage` and honours the visitor's system preference on first load.
+
+## 📸 Snapshots
 
 <div align="center">
 
-<a href="https://madhurimarawat.github.io/Portfolio-Templates/Nature_Canvas">
-  <img src="site-previews/website_1.png" 
-       alt="Nature Canvas Homepage Preview" 
-       title="Click to view the Nature Canvas homepage">
-</a>
+<img src="site-previews/website_1.png" alt="Light mode homepage" title="Light mode – parchment background with pine headings">
 
-<a href="https://madhurimarawat.github.io/Portfolio-Templates/Nature_Canvas">
-  <img src="site-previews/mobile_website.png" 
-       alt="Desktop View of Nature Canvas Portfolio" 
-       title="Desktop Preview – Nature Canvas Portfolio Template">
-</a>
-
-<a href="https://madhurimarawat.github.io/Portfolio-Templates/Nature_Canvas">
-  <img src="site-previews/desktop_website.png" 
-       alt="Mobile View of Nature Canvas Portfolio" 
-       title="Mobile Preview – Nature Canvas Template">
-</a>
+<img src="site-previews/mobile_website.png" alt="Dark mode on mobile" title="Dark mode – deep pine background with warm sand text" width="320">
 
 </div>
 
-### 💡 Perfect For:
+🔙 [Back to the portfolio README](../README.md)
 
-* 🌿 **Nature lovers, eco-friendly brands, or sustainability advocates** who want their work to reflect natural harmony.
-* 🖼️ **Creative portfolios or minimal showcases** that benefit from calm tones and organic elegance.
-* 📖 **Writers, poets, or educators** looking to present content in a grounded and soothing environment.
-
-🔙 [Back to All Templates](../Templates.md)
-
-🖼️ **Background image credit:**
-
-[Green Leaves Frame – Transparent PNG](https://www.nicepng.com/png/full/78-788269_green-leaves-frame-transparent-background-border-leaves.png)
-
-*Thanks to the original artist for this beautiful nature frame.*
+🖼️ **Background image credit:** [Green Leaves Frame – Transparent PNG](https://www.nicepng.com/png/full/78-788269_green-leaves-frame-transparent-background-border-leaves.png). Thanks to the original artist for this nature frame.
