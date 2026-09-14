@@ -1,15 +1,53 @@
 {
-    "name": "Jane Doe",
-    "role": "Full Stack Developer | UI/UX Designer",
-    "bio": "Creative and detail-oriented developer passionate about building user-friendly digital experiences.",
-    "skills": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React",
-        "Node.js",
-        "Python",
-        "Git",
-        "Figma"
-    ]
+    "name": "Davina Raj",
+    "role": "Computer Science @ Georgia Tech",
+    "bio": "Student concentrating in artificial intelligence and modeling/simulation. I work on computer vision research, full-stack AI applications, and RTL design.",
+    "skills": {
+        "Languages": [
+            "Python",
+            "Java",
+            "TypeScript",
+            "JavaScript",
+            "Swift",
+            "SystemVerilog"
+        ],
+        "AI / ML": [
+            "PyTorch",
+            "CNNs",
+            "Random Forest",
+            "Computer Vision",
+            "Classification",
+            "Anomaly Detection",
+            "Data Preprocessing",
+            "Model Evaluation"
+        ],
+        "Software Engineering": [
+            "React",
+            "Next.js",
+            "Node.js",
+            "Express",
+            "Firebase",
+            "REST APIs",
+            "Git / GitHub",
+            "Testing",
+            "Debugging",
+            "Agile / Scrum"
+        ],
+        "AI Development": [
+            "LLM API Integration",
+            "Gemini API",
+            "AI-Assisted Development",
+            "Claude Code",
+            "Cursor",
+            "GitHub Copilot"
+        ],
+        "Engineering": [
+            "Requirements Analysis",
+            "Performance Benchmarking",
+            "Simulation",
+            "Verification",
+            "Observability",
+            "Deployment Tradeoffs"
+        ]
+    }
 }

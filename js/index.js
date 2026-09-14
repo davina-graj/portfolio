@@ -1,20 +1,18 @@
 /**
  * 🚀 Portfolio Data Loader Script
  * 
- * This script dynamically loads user profile data, social links, projects, certifications,
- * education, research papers, and hobbies from JSON files located in the `/Portfolio-Templates/assets/user_data/` directory. 📁
+ * This script dynamically loads user profile data, social links, experience, projects
+ * and education from JSON files located in the `assets/user_data/` directory. 📁
  * 
  * It uses async functions to fetch and parse JSON files, then populates corresponding sections
  * on the portfolio webpage by creating and appending HTML elements. 🖥️✨
  * 
  * Features:
- * - 👤 Loads user info (name, role, bio, skills)
+ * - 👤 Loads user info (name, role, bio, skills grouped by category)
  * - 🔗 Loads social media and professional links with icons
- * - 📂 Displays project cards with images, descriptions, and links
- * - 🎓 Shows certifications with issuer details and certificate links
+ * - 💼 Renders experience entries with bullet highlights
+ * - 📂 Displays project cards with highlights, tech stack, and links
  * - 🏫 Renders education history as cards
- * - 📄 Lists research papers with links
- * - 🎨 Displays hobbies with icons
  * - ⚠️ Handles error cases by hiding sections gracefully if data is missing or fetch fails
  * 
  * Dependencies:
@@ -34,20 +32,14 @@
  * - async loadSocialLinks() 🔗
  *   Retrieves social media and professional profile links, rendering icons and clickable anchors.
  * 
- * - async loadProjects() 📂
- *   Loads project data including titles, descriptions, images, and repository/demo links as cards.
+ * - async loadExperience() 💼
+ *   Renders roles with organisation, location, dates, and bullet highlights.
  * 
- * - async loadCertifications() 🎓
- *   Fetches certifications data and displays issuer, certificate name, and link to certificate PDF or webpage.
+ * - async loadProjects() 📂
+ *   Loads project data including titles, highlights, tech stack, and repository/demo links as cards.
  * 
  * - async loadEducation() 🏫
  *   Retrieves educational history and shows degrees, institutions, and duration in a card layout.
- * 
- * - async loadResearchPapers() 📄
- *   Lists research papers or publications with clickable links to download or view.
- * 
- * - async loadHobbies() 🎨
- *   Displays hobbies and interests with matching icons and descriptions.
  * 
  * Author: Madhurima Rawat 👩‍💻
  * Date: 2025-06-03 📅
@@ -83,8 +75,11 @@ document.querySelectorAll('nav a.nav-link').forEach(link => {
 });
 
 
-// Paths to JSON files relative to this script location
-const basePath = "/Portfolio-Templates/assets/user_data/";
+// Site base path comes from <body data-baseurl>, which Jekyll fills in from
+// _config.yml. Falls back to the site root when the tag is unprocessed.
+const rawBaseUrl = document.body.dataset.baseurl || "";
+const siteBaseUrl = rawBaseUrl.includes("{{") ? "" : rawBaseUrl.replace(/\/$/, "");
+const basePath = `${siteBaseUrl}/assets/user_data/`;
 
 const iconMap = {
     "email-id": "fas fa-envelope",   // 📧 Email icon (Font Awesome Solid)
@@ -166,6 +161,85 @@ function setFooter(user) {
 }
 
 
+// 🛠️ Build one row of skill pills, optionally labelled with its category
+function createSkillGroup(label, skills) {
+    const group = document.createElement("div");
+    group.className = "skill-group";
+
+    if (label) {
+        const heading = document.createElement("h3");
+        heading.className = "skill-group-label";
+        heading.textContent = label;
+        group.appendChild(heading);
+    }
+
+    const list = document.createElement("ul");
+    list.className = "skills-list";
+
+    skills.forEach(skill => {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        list.appendChild(li);
+    });
+
+    group.appendChild(list);
+    return group;
+}
+
+// Skills accept either a flat array or an object of category → array
+function renderSkills(skills) {
+    const container = document.getElementById("skills-groups");
+    if (!container || !skills) return false;
+
+    container.innerHTML = "";
+
+    if (Array.isArray(skills)) {
+        if (skills.length === 0) return false;
+        container.appendChild(createSkillGroup(null, skills));
+        return true;
+    }
+
+    const categories = Object.keys(skills).filter(key => skills[key]?.length);
+    if (categories.length === 0) return false;
+
+    categories.forEach(category => {
+        container.appendChild(createSkillGroup(category, skills[category]));
+    });
+
+    return true;
+}
+
+// 📌 Bullet list shared by experience entries and project cards
+function createHighlightList(highlights) {
+    const list = document.createElement("ul");
+    list.className = "card-highlights";
+
+    highlights.forEach(text => {
+        const li = document.createElement("li");
+        li.textContent = text;
+        list.appendChild(li);
+    });
+
+    return list;
+}
+
+// 🔽 Click-to-expand block: the title stays visible, the bullets fold away.
+//    <details> handles the toggling natively, so no click handler is needed.
+function createCollapsibleSection(title, items, openByDefault = false) {
+    const details = document.createElement("details");
+    details.className = "card-details";
+    if (openByDefault) details.open = true;
+
+    const summary = document.createElement("summary");
+    summary.className = "card-details-summary";
+    summary.textContent = title;
+
+    details.appendChild(summary);
+    details.appendChild(createHighlightList(items));
+
+    return details;
+}
+
 // 🧑‍💼 Load and display user info: name, role, bio, skills
 async function loadUserInfo() {
     // Helper to hide a section by its ID
@@ -182,23 +256,13 @@ async function loadUserInfo() {
         const user = await fetchJSON("user.json");
 
         // Check if user has any info to show
-        if (user.name || user.role || user.bio || (user.skills && user.skills.length)) {
+        if (user.name || user.role || user.bio || user.skills) {
             // 👤 Set user name, role, bio text content or empty string
             document.getElementById("name").textContent = user.name || "";
             document.getElementById("role").textContent = user.role || "";
             document.getElementById("bio").textContent = user.bio || "";
 
-            const skillsList = document.getElementById("skills-list");
-            skillsList.innerHTML = "";
-
-            // 🛠️ Populate skills list if available
-            if (user.skills && user.skills.length > 0) {
-                user.skills.forEach(skill => {
-                    const li = document.createElement("li");
-                    li.textContent = skill;
-                    skillsList.appendChild(li);
-                });
-            } else {
+            if (!renderSkills(user.skills)) {
                 hideSection("skills"); // ❌ Hide Skills if none
             }
 
@@ -266,7 +330,29 @@ function createProjectCard(project) {
 
     const tools = document.createElement("p");
     tools.className = "project-tools section-meta";
-    tools.textContent = `Tools: ${project.tools}`;
+    const toolList = Array.isArray(project.tools) ? project.tools.join(" · ") : project.tools;
+    tools.textContent = `Tools: ${toolList}`;
+
+    card.appendChild(title);
+
+    // Role and dates sit directly under the title as a single byline
+    const byline = [project.role, project.period].filter(Boolean).join("  ·  ");
+    if (byline) {
+        const sub = document.createElement("p");
+        sub.className = "project-byline card-byline";
+        sub.textContent = byline;
+        card.appendChild(sub);
+    }
+
+    if (project.award) {
+        const award = document.createElement("p");
+        award.className = "card-award";
+        const icon = document.createElement("i");
+        icon.className = "fas fa-award";
+        award.appendChild(icon);
+        award.appendChild(document.createTextNode(` ${project.award}`));
+        card.appendChild(award);
+    }
 
     const links = document.createElement("div");
     links.className = "project-links section-links";
@@ -287,12 +373,71 @@ function createProjectCard(project) {
         links.appendChild(githubLink);
     }
 
-    card.appendChild(title);
-    card.appendChild(description);
+    if (project.description) card.appendChild(description);
+    if (project.highlights?.length) card.appendChild(createHighlightList(project.highlights));
+
+    // Optional collapsible blocks, e.g. "Extended Description" / "Process Description"
+    project.sections?.forEach(section => {
+        if (!section?.items?.length) return;
+        card.appendChild(createCollapsibleSection(section.title, section.items, section.open));
+    });
     card.appendChild(tools);
-    card.appendChild(links);
+    if (links.childElementCount > 0) card.appendChild(links);
 
     return card;
+}
+
+// 💼 Load and display work / research experience
+async function loadExperience() {
+    const sectionId = "experience";
+
+    try {
+        const roles = await fetchJSON("experience.json");
+
+        const list = document.getElementById("experience-list");
+        if (!list) throw new Error("Experience container not found");
+
+        list.innerHTML = "";
+
+        if (!Array.isArray(roles) || roles.length === 0) {
+            hideSection(sectionId);
+            return;
+        }
+
+        roles.forEach(job => {
+            const card = document.createElement("div");
+            card.className = "experience-card section-card";
+
+            const role = document.createElement("h3");
+            role.className = "experience-role section-subheading";
+            role.textContent = job.role;
+            card.appendChild(role);
+
+            const where = [job.organization, job.location].filter(Boolean).join(" — ");
+            if (where) {
+                const org = document.createElement("p");
+                org.className = "experience-org section-description";
+                org.textContent = where;
+                card.appendChild(org);
+            }
+
+            if (job.period) {
+                const period = document.createElement("p");
+                period.className = "experience-period card-byline";
+                period.textContent = job.period;
+                card.appendChild(period);
+            }
+
+            if (job.highlights?.length) {
+                card.appendChild(createHighlightList(job.highlights));
+            }
+
+            list.appendChild(card);
+        });
+
+    } catch (error) {
+        hideSection(sectionId);
+    }
 }
 
 
@@ -334,63 +479,6 @@ async function loadProjects() {
     }
 }
 
-
-// 🎓 Load and display certifications
-async function loadCertifications() {
-
-    try {
-        const certifications = await fetchJSON("certifications.json");
-
-        if (!Array.isArray(certifications) || certifications.length === 0)
-            throw new Error("No certifications found");
-
-        const certList = document.getElementById("certifications-list");
-        certList.innerHTML = "";
-
-        // 📝 For each certification, create a card with title, issuer, year, and link
-        certifications.forEach(cert => {
-            const certItem = document.createElement("div");
-            certItem.className = "certification-card section-card";
-
-            const title = document.createElement("h3");
-            title.className = "cert-title section-subheading";
-            title.textContent = cert.title;
-
-            const issuer = document.createElement("p");
-            issuer.className = "cert-issuer section-meta";
-            issuer.textContent = `Issued by: ${cert.issuer}`;
-
-            const year = document.createElement("p");
-            year.className = "cert-year section-description";
-            year.textContent = cert.year;
-
-            certItem.appendChild(title);
-            certItem.appendChild(year);
-            certItem.appendChild(issuer);
-
-            // 🔗 Add certificate link if available
-            if (cert.link) {
-                const linkP = document.createElement("p");
-                linkP.className = "cert-link section-links";
-
-                const linkA = document.createElement("a");
-                linkA.href = cert.link;
-                linkA.target = "_blank";
-                linkA.rel = "noopener noreferrer";
-                linkA.textContent = "View Certificate";
-
-                linkP.appendChild(linkA);
-                certItem.appendChild(linkP);
-            }
-
-            certList.appendChild(certItem);
-        });
-
-    } catch (error) {
-        // ❌ Hide certifications section if error or none
-        hideSection("certifications");
-    }
-}
 
 // 🎓 Load and display education
 async function loadEducation() {
@@ -440,141 +528,13 @@ async function loadEducation() {
     }
 }
 
-// 📄 Load and display research papers
-async function loadResearchPapers() {
-    const sectionId = "research";
-    try {
-        const papers = await fetchJSON("research_papers.json");
-
-        const researchList = document.getElementById("research-papers");
-        researchList.innerHTML = "";
-
-        if (!Array.isArray(papers) || papers.length === 0) {
-            hideSection(sectionId);
-            return;
-        }
-
-        papers.forEach(paper => {
-            const paperItem = document.createElement("div");
-            paperItem.className = "research-paper-item section-card section-description";
-
-            const title = document.createElement("h3");
-            title.className = "research-title section-subheading";
-            title.textContent = paper.title;
-
-            const publication = document.createElement("p");
-            publication.className = "research-publication section-description";
-            publication.textContent = `Published in: ${paper.publication}`;
-
-            const year = document.createElement("p");
-            year.className = "research-year section-meta";
-            year.textContent = paper.year;
-
-            paperItem.appendChild(title);
-            paperItem.appendChild(publication);
-            paperItem.appendChild(year);
-
-            if (paper.link) {
-                const linkP = document.createElement("p");
-                linkP.className = "research-link section-links";
-
-                const linkA = document.createElement("a");
-                linkA.href = paper.link;
-                linkA.target = "_blank";
-                linkA.rel = "noopener noreferrer";
-                linkA.textContent = "Read Paper";
-
-                linkP.appendChild(linkA);
-                paperItem.appendChild(linkP);
-            }
-
-            researchList.appendChild(paperItem);
-        });
-
-    } catch (error) {
-        hideSection(sectionId);
-    }
-}
-
-
-// 🎯 Load and display hobbies & interests
-async function loadHobbies() {
-    const sectionId = "hobbies";
-    try {
-        const hobbies = await fetchJSON("hobbies.json");
-
-        const hobbiesList = document.getElementById("hobbies-list");
-        hobbiesList.innerHTML = "";
-
-        if (!Array.isArray(hobbies) || hobbies.length === 0) {
-            hideSection(sectionId);
-            return;
-        }
-
-        const iconMap = {
-            "Photography": "fas fa-camera-retro",
-            "Traveling": "fas fa-globe-americas",
-            "Creative Writing": "fas fa-pen-nib",
-            "Open Source Contribution": "fab fa-github",
-            "Sketching & Doodling": "fas fa-pencil-alt",
-            "Reading Non-Fiction": "fas fa-book-open"
-        };
-
-        hobbies.forEach(hobby => {
-            const hobbyItem = document.createElement("div");
-            hobbyItem.className = "hobby-card section-card section-description";
-
-            const title = document.createElement("h3");
-            title.className = "hobby-title section-subheading";
-
-            const iconClass = iconMap[hobby.title] || "fas fa-star";
-            const icon = document.createElement("i");
-            icon.className = `${iconClass} hobby-icon`;
-            title.appendChild(icon);
-
-            const textSpan = document.createElement("span");
-            textSpan.textContent = ` ${hobby.title}`;
-            title.appendChild(textSpan);
-
-            const description = document.createElement("p");
-            description.className = "hobby-description section-meta";
-            description.textContent = hobby.publication;
-
-            hobbyItem.appendChild(title);
-            hobbyItem.appendChild(description);
-
-            if (hobby.link) {
-                const linkP = document.createElement("p");
-                linkP.className = "hobby-link section-links";
-
-                const linkA = document.createElement("a");
-                linkA.href = hobby.link;
-                linkA.target = "_blank";
-                linkA.rel = "noopener noreferrer";
-                linkA.textContent = "Read More";
-
-                linkP.appendChild(linkA);
-                hobbyItem.appendChild(linkP);
-            }
-
-            hobbiesList.appendChild(hobbyItem);
-        });
-
-    } catch (error) {
-        hideSection(sectionId);
-    }
-}
-
-
 // 🚀 Main function to load the entire portfolio by calling each loader
 async function loadPortfolio() {
     await loadUserInfo();
     await loadSocialLinks();
+    await loadExperience();
     await loadProjects();
-    await loadCertifications();
     await loadEducation();
-    await loadResearchPapers();
-    await loadHobbies();
 }
 
 document.addEventListener("DOMContentLoaded", loadPortfolio);

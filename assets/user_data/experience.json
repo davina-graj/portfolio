@@ -1,0 +1,35 @@
+[
+    {
+        "role": "Computer Vision Researcher",
+        "organization": "AquaBots",
+        "location": "Atlanta, GA",
+        "period": "Jan 2026 – Present",
+        "highlights": [
+            "Benchmarked 2 CNN architectures across 5,000+ images, evaluating accuracy, latency, and memory usage to identify deployment tradeoffs for resource-constrained systems.",
+            "Built a scalable Python evaluation pipeline supporting 10+ experiments and automating model benchmarking, metric collection, and analysis.",
+            "Automated image-classification workflows, reducing manual review time by ~25% and improving consistency of evaluation.",
+            "Evaluated 3 deployment metrics to inform model selection for memory-constrained systems, balancing predictive performance with computational efficiency."
+        ]
+    },
+    {
+        "role": "iOS App Developer",
+        "organization": "Georgia Tech iOS Club",
+        "location": "Atlanta, GA",
+        "period": "Aug 2025 – May 2026",
+        "highlights": [
+            "Shipped 8+ Swift features using Firebase Authentication and real-time database synchronization as part of a 10-person team.",
+            "Improved authentication workflows and error handling, reducing observed errors by ~30% while contributing across frontend and backend development through Agile sprint cycles."
+        ]
+    },
+    {
+        "role": "Technology Instructor",
+        "organization": "Black Rocket",
+        "location": "Princeton, NJ",
+        "period": "Jun 2026 – Aug 2026",
+        "highlights": [
+            "Led hands-on instruction for 11 groups of 20+ students, fostering participation, collaboration, and curiosity.",
+            "Mentored students across multiple experience levels in algorithms, debugging, and software development.",
+            "Diagnosed authentication and account-access issues across multiple educational platforms, providing individualized technical support and troubleshooting."
+        ]
+    }
+]

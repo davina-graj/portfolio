@@ -1,30 +1,136 @@
 [
     {
-        "name": "Project One",
-        "description": "A web application that helps users manage tasks efficiently.",
-        "link": {
-            "github": "https://github.com/janedoe/project-one",
-            "live_demo": "https://project-one.janedoe.dev"
-        },
-        "tools": [
-            "React",
-            "Node.js",
-            "MongoDB"
+        "name": "GT Movies Store",
+        "role": "Full-Stack Application - CS 2340 (Objects & Design)",
+        "period": "Sep 2026",
+        "description": "Web-based movie store app with unique user functionality including movie purchases, reviews, reports, and more.",
+        "sections": [
+            {
+                "title": "Extended Description",
+                "items": [
+                    "Users can create their own accounts to make purchases and view orders privately.",
+                    "The 'About' page lets users learn about the purpose of the app.",
+                    "Users can browse and search for movies in the 'Movies' page. Clicking on a movie takes users to a page where they can see the title, description, and cost of the movie.",
+                    "They can also read, write, and edit reviews to share their thoughts and have the flexibility to change their opinions. Offensive content can be reported and will be immediately removed for the safety of all users.",
+                    "Users can purchase different quantities of movies and will be able to see their total at checkout before their purchase. They can also delete all the items in their cart if needed.",
+                    "The orders page shows users their previous invoices, so that they can have a record of all their purchases.",
+                    "If an account is deleted, all corresponding information will be erased for the safety and privacy of the users.",
+                    "The administrator has the ability to create, delete, edit, and view all users, movies, and orders to effectively manage the application."
+                ]
+            },
+            {
+                "title": "Process Description",
+                "items": [
+                    "I approached this project on a feature basis. I worked on one feature at a time, adding onto previously functioning code.",
+                    "After each feature was created, I tested and debugged immediately to avoid future complications.",
+                    "I created many users, reviews, and movies to continuously test the functionality of each user story to ensure meeting all requirements.",
+                    "When I had issues, I referred to W3Schools and Django's official documentation for clarification. I also used the course EdDiscussion page as a resource."
+                ]
+            }
         ],
-        "image": "https://img.freepik.com/premium-vector/project-typographic-header_277904-11460.jpg?w=2000"
+        "tools": [
+            "Django",
+            "Python",
+            "HTML",
+            "CSS",
+            "PythonAnywhere"
+        ],
+        "link": {
+            "github": "https://github.com/davina-graj/moviesstore.git",
+            "live_demo": "https://gtvault-my.sharepoint.com/:v:/g/personal/araj305_gatech_edu/IQBIuTLMSNtDQIGSvSu7C1oTASXiXf6tj6u3sAcuQSF4ZyA?e=DkeboS&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D"
+        },
+        "image": ""
     },
     {
-        "name": "Project Two",
-        "description": "An AI-powered chatbot built using Python and NLP libraries.",
+        "name": "CleanSweep",
+        "role": "AI Photo Classifier and Organizer",
+        "period": "May 2026 – Present",
+        "description": "Browser-based photo organizer that classifies and edits images entirely client-side, with no server-side processing of user photos.",
+        "highlights": [
+            "Developed a browser-based AI photo organization application using Next.js, React, TypeScript, and TensorFlow.js, performing image classification and editing client-side.",
+            "Built a Python data pipeline using Open Images V7 and Pexels data for computer-vision model experimentation and evaluation.",
+            "Implemented 5+ computer-vision workflows, including blur detection, duplicate detection, MobileNet classification, lighting analysis, and color adjustment."
+        ],
+        "tools": [
+            "Next.js",
+            "React",
+            "TypeScript",
+            "TensorFlow.js",
+            "MobileNet",
+            "Python"
+        ],
         "link": {
-            "github": "https://github.com/janedoe/chatbot",
+            "github": "",
             "live_demo": ""
         },
+        "image": ""
+    },
+    {
+        "name": "Phantom Busters",
+        "role": "Full-Stack Developer — EnergyHack@GT",
+        "period": "Jan 2026",
+        "award": "Winner — Best Use of ElevenLabs",
+        "description": "Real-time anomaly-detection dashboard for energy telemetry, pairing a Random Forest classifier with a voice-driven AI agent for operational decision support.",
+        "highlights": [
+            "Built a Python anomaly-detection pipeline using Random Forest classification, achieving 98% ROC-AUC.",
+            "Developed a full-stack application with Next.js, React, TypeScript, and Express for real-time visualization of ML outputs.",
+            "Processed 5,000+ simulated telemetry records and integrated ML predictions and an ElevenLabs-backed AI agent into a real-time dashboard."
+        ],
         "tools": [
             "Python",
-            "NLTK",
-            "Flask"
+            "Random Forest",
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Express",
+            "ElevenLabs API"
         ],
-        "image": "https://xebrio.com/wp-content/uploads/2021/09/project-management-artifacts-banner-980x515.jpg"
+        "link": {
+            "github": "",
+            "live_demo": ""
+        },
+        "image": ""
+    },
+    {
+        "name": "NewsToStock",
+        "role": "AI Market-Theme Pipeline",
+        "period": "Aug 2026 – Present",
+        "description": "End-to-end pipeline that reads the news, extracts market themes, and maps them onto ETFs and S&P 500 companies with historical performance context.",
+        "highlights": [
+            "Built an end-to-end AI pipeline using the Gemini API to extract themes from news articles, map them to 100+ ETFs and S&P 500 companies, and generate historical performance visualizations.",
+            "Implemented recency-based batch refresh logic across multiple third-party APIs to balance data freshness and reliability."
+        ],
+        "tools": [
+            "Python",
+            "Gemini API",
+            "REST APIs",
+            "Data Visualization"
+        ],
+        "link": {
+            "github": "",
+            "live_demo": ""
+        },
+        "image": ""
+    },
+    {
+        "name": "AES Cryptographic Accelerator (RTL)",
+        "role": "SiliconJackets",
+        "period": "Mar 2026 – Present",
+        "description": "Hardware AES accelerator and supporting 64-bit processor written in SystemVerilog, verified against a purpose-built testbench suite.",
+        "highlights": [
+            "Designed a modular AES cryptographic accelerator and 64-bit processor in SystemVerilog, implementing structured control logic and finite state machines.",
+            "Developed and executed 20+ simulation test cases and verification testbenches using SimVision to validate functionality and identify race conditions, signal hazards, and timing violations."
+        ],
+        "tools": [
+            "SystemVerilog",
+            "SimVision",
+            "RTL Design",
+            "Functional Verification"
+        ],
+        "link": {
+            "github": "",
+            "live_demo": ""
+        },
+        "image": ""
     }
 ]

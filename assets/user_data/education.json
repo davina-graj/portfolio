@@ -1,14 +1,8 @@
 [
     {
-        "degree": "B.Tech in Computer Science",
-        "institution": "University of Example",
-        "year": "2019 - 2023",
-        "details": "Focused on software engineering, algorithms, and UX design."
-    },
-    {
-        "degree": "High School Diploma",
-        "institution": "Example High School",
-        "year": "2017 - 2019",
-        "details": "Graduated with honors in science and mathematics."
+        "degree": "B.S. in Computer Science",
+        "institution": "Georgia Institute of Technology — Atlanta, GA",
+        "year": "Aug 2025 – Dec 2028 (Expected)",
+        "details": "Concentration in Artificial Intelligence and Modeling/Simulation. \nGPA 3.76. \nRelevant coursework: Data Structures & Algorithms, Object-Oriented Programming, Discrete Mathematics."
     }
 ]

@@ -1,142 +1,169 @@
 /*
 ----------------------------------------------------------------------
-Author: Madhurima Rawat 👩‍💻
-Template: Nature_Canvas 🎨
-File: index.css 📄
+Template: Nature Canvas 🌿
+File: index.css
 Location: /Nature_Canvas/css/index.css
 ----------------------------------------------------------------------
 Description:
-    🎯 This is the main stylesheet for the Slate Ember version of the
-       Minimalist_Professional personal portfolio template.
+    Light mode colour application for the nature-themed CS portfolio.
+    Every colour here resolves to a token from variables.css, so the
+    whole site can be retinted from that one file.
 
-    📐 Defines core layout and visual styling for elements including:
-        - Sections (Objective, Education, Experience, etc.)
-        - Buttons and interactive elements
-        - Color theming and background styles specific to Slate + Ember palette
-        - Typography: font families, sizes, and alignment
-        - Utility and helper classes for spacing and alignment
-
-    🌗 Works in conjunction with:
-        ✅ variables.css – CSS variables for global theming
-        ✅ main-styles.css – Shared base layout and component styles
-        ✅ index-dark.css – Dark mode overrides for this theme
-        ✅ responsive-styles.css – Responsive behavior for mobile/tablet
-
+Works together with:
+    ✅ variables.css – palette + typography tokens
+    ✅ main-styles.css – layout and component structure
+    ✅ index-dark.css – dark mode overrides
+    ✅ responsive-styles.css – breakpoint adjustments
 ----------------------------------------------------------------------
 */
 
-/* General body styles */
 body {
-    background-color: var(--light-green);
-    color: var(--teal)
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
-/* Make links fill the height and center content */
 nav a.nav-link {
-    color: var(--teal);
+    color: var(--color-heading);
 }
 
 nav a:hover {
-    color: var(--red);
+    color: var(--color-accent);
+}
+
+/* Warm sand panel so the intro reads as its own patch of colour */
+.home-section {
+    background: var(--color-panel);
+    border-bottom: 3px solid var(--color-panel-edge);
+}
+
+.name {
+    color: var(--color-heading);
+}
+
+.role {
+    color: var(--color-text-soft);
 }
 
 .bio {
-    color: var(--dark-green);
-    /* Light gray text */
+    color: var(--color-text);
 }
 
-/* Section heading styles */
+/* Section heading with a mossy underline */
 .section-heading {
-    color: var(--teal);
-    /* Heading text color */
-    border-bottom: 2px solid var(--red);
-    /* Decorative underline */
+    color: var(--color-heading);
+    border-bottom: 2px solid var(--color-accent-warm);
 }
 
 /* Individual social link */
 .social-link {
-    color: var(--teal);
-    /* Link text color */
-    border: 2px solid var(--teal);
-    /* Border */
-    box-shadow: 0 2px 5px var(--hover-green);
-    /* Subtle shadow */
+    color: var(--color-heading);
+    border: 2px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
 }
 
+/* Hovering fills with the warm tone rather than another green */
 .social-link:hover {
-    background-color: var(--red);
-    /* Change background */
-    color: var(--button-text);
-    /* Change text color */
-    border-color: var(--red);
-    /* Change border */
-    box-shadow: 0 2px 5px var(--teal);
-    /* Subtle shadow */
+    background-color: var(--color-accent-warm);
+    color: var(--pine);
+    border-color: var(--color-accent-warm);
+    box-shadow: var(--shadow-lift);
 }
 
-/* Individual skill item */
+/* Skill pills read as damp bark chips on parchment */
 .skills-list li {
-    background-color: var(--red);
-    /* Skill badge color */
-    color: var(--button-text);
-    /* Text color */
-    box-shadow: 0 2px 5px var(--teal);
-    /* Subtle shadow */
+    background-color: var(--color-chip-bg);
+    color: var(--color-chip-text);
+    border: 2px solid var(--color-chip-bg);
+    box-shadow: var(--shadow-soft);
 }
 
 .skills-list li:hover {
-    background-color: transparent;
-    /* Invert colors */
-    color: var(--teal);
-    border-color: var(--teal);
-    box-shadow: 0 2px 5px var(--hover-green);
-    /* Subtle shadow */
+    background-color: var(--color-accent-warm);
+    color: var(--pine);
+    border-color: var(--color-accent-warm);
+    box-shadow: var(--shadow-inset-accent);
 }
 
 .section-card {
-    border: 2px solid var(--red);
-    /* Outer border */
-    background: var(--white);
-    /* Card background */
-    box-shadow: 0 4px 8px var(--hover-green);
-    /* Subtle coral shadow */
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-accent-warm);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
 }
 
 .section-card:hover {
-    box-shadow: 0 8px 16px var(--hover-green);
+    box-shadow: var(--shadow-lift);
 }
 
 /* -------------------------------------------
-   Project Section Styles
+   Project / Card Section Styles
 ------------------------------------------- */
 
-/* Project title */
 .section-subheading {
-    color: var(--red);
+    color: var(--color-heading);
 }
 
-
-/* Technologies/tools and certificates link used in the project */
+/* Tech stack, issuer, year and other metadata */
 .section-meta {
-    color: var(--dark-blue);
+    color: var(--color-text-soft);
 }
 
-/* Links to project demos, GitHub, etc. */
+/* Category labels above each row of skill pills */
+.skill-group-label {
+    color: var(--color-text-soft);
+}
+
+/* Dates and roles under a card title */
+.card-byline {
+    color: var(--color-text-soft);
+}
+
+/* Awards get the warm tone so they stand out from the greens */
+.card-award {
+    background: var(--color-accent-warm);
+    color: var(--pine);
+}
+
+/* Expandable "Extended Description" style blocks */
+.card-details {
+    border-top: 1px solid var(--color-border);
+}
+
+.card-details-summary {
+    color: var(--color-heading);
+}
+
+.card-details-summary:hover {
+    color: var(--color-accent);
+}
+
+.card-details-summary::before {
+    color: var(--color-accent-warm);
+}
+
+.card-highlights li {
+    color: var(--color-text);
+}
+
+.card-highlights li::before {
+    color: var(--color-accent);
+}
+
+.section-description {
+    color: var(--color-text);
+}
+
+/* Links to project demos, GitHub, papers */
 .section-links a {
-    color: var(--teal);
+    color: var(--color-heading);
+    border-bottom: 1px solid var(--color-accent-warm);
 }
 
-/* Hover effect for project links */
 .section-links a:hover {
-    color: var(--red);
-}
-
-/* Icon styling */
-.hobby-icon {
-    color: var(--teal);
-    /* Adjust to theme color */
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
 .footer {
-    color: var(--dark-green);
+    color: var(--color-heading);
 }
