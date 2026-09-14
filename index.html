@@ -12,7 +12,8 @@
     All content is loaded at runtime from assets/user_data/*.json by js/index.js,
     so this file only defines structure. Colours live in Nature_Canvas/css.
 
-    Paths are root-relative because the site is served from the domain root.
+    Asset paths are relative (no leading slash) so the site works both at a
+    domain root and under a subpath like /portfolio/ on GitHub Pages.
 -->
 
 <!DOCTYPE html>
@@ -32,15 +33,15 @@
     <meta name="robots" content="index, follow" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/images/title-icon.png" />
-    <link rel="apple-touch-icon" href="/assets/images/title-icon.png" />
+    <link rel="icon" type="image/png" href="assets/images/title-icon.png" />
+    <link rel="apple-touch-icon" href="assets/images/title-icon.png" />
 
     <!-- Open Graph / Facebook Preview -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Computer Science Portfolio" />
     <meta property="og:description"
         content="Nature-inspired computer science portfolio showcasing software projects, technical skills, experience, and education." />
-    <meta property="og:image" content="/Nature_Canvas/site-previews/website_1.png" />
+    <meta property="og:image" content="Nature_Canvas/site-previews/website_1.png" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card Preview -->
@@ -48,7 +49,7 @@
     <meta name="twitter:title" content="Computer Science Portfolio" />
     <meta name="twitter:description"
         content="Nature-inspired computer science portfolio showcasing software projects, technical skills, experience, and education." />
-    <meta name="twitter:image" content="/Nature_Canvas/site-previews/website_1.png" />
+    <meta name="twitter:image" content="Nature_Canvas/site-previews/website_1.png" />
 
     <!-- Theme Color for mobile browsers (deep pine from the palette) -->
     <meta name="theme-color" content="#1A3637" />
@@ -62,11 +63,11 @@
             font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;">
 
     <!-- Nature Canvas theme styles -->
-    <link rel="stylesheet" href="/Nature_Canvas/css/variables.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/main-styles.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/index.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/index-dark.css" />
-    <link rel="stylesheet" href="/Nature_Canvas/css/responsive-styles.css" />
+    <link rel="stylesheet" href="Nature_Canvas/css/variables.css" />
+    <link rel="stylesheet" href="Nature_Canvas/css/main-styles.css" />
+    <link rel="stylesheet" href="Nature_Canvas/css/index.css" />
+    <link rel="stylesheet" href="Nature_Canvas/css/index-dark.css" />
+    <link rel="stylesheet" href="Nature_Canvas/css/responsive-styles.css" />
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -133,7 +134,7 @@
     </footer>
 
     <!-- Loads all content from assets/user_data -->
-    <script src="/js/index.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
