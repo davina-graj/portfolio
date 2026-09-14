@@ -305,6 +305,15 @@ async function loadSocialLinks() {
     }
 }
 
+// Buttons appear in this order; any extra key in `link` is appended after these
+const PROJECT_LINK_LABELS = {
+    live_demo: "Live Demo",
+    website: "View Website",
+    github: "GitHub",
+    devpost: "Devpost",
+    paper: "Paper"
+};
+
 function createProjectCard(project) {
     const card = document.createElement("div");
     card.className = "project-card section-card";
@@ -355,21 +364,22 @@ function createProjectCard(project) {
     const links = document.createElement("div");
     links.className = "project-links section-links";
 
-    if (project.link?.live_demo) {
-        const demoLink = document.createElement("a");
-        demoLink.href = project.link.live_demo;
-        demoLink.textContent = "Live Demo";
-        demoLink.target = "_blank";
-        links.appendChild(demoLink);
-    }
+    const linkOrder = Object.keys(PROJECT_LINK_LABELS);
+    const linkRank = key => (linkOrder.indexOf(key) === -1 ? linkOrder.length : linkOrder.indexOf(key));
+    const linkKeys = Object.keys(project.link || {}).sort((a, b) => linkRank(a) - linkRank(b));
 
-    if (project.link?.github) {
-        const githubLink = document.createElement("a");
-        githubLink.href = project.link.github;
-        githubLink.textContent = "GitHub";
-        githubLink.target = "_blank";
-        links.appendChild(githubLink);
-    }
+    // Any key in `link` renders as a button; unknown keys get a spaced-out label
+    linkKeys.forEach(key => {
+        const url = project.link[key];
+        if (!url) return;
+
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.textContent = PROJECT_LINK_LABELS[key] || key.replace(/[_-]/g, " ");
+        anchor.target = "_blank";
+        anchor.rel = "noopener noreferrer";
+        links.appendChild(anchor);
+    });
 
     if (project.description) card.appendChild(description);
     if (project.highlights?.length) card.appendChild(createHighlightList(project.highlights));
